@@ -288,6 +288,9 @@ public class Torrent extends InterruptableTasksThread {
                 InetAddress address = InetAddress.getByName(new String(addressByteBuffer.array()));
                 int port = ((Long) peerMap.get(ByteBuffer.wrap("port".getBytes()))).intValue();
                 ByteBuffer peerIdByteByteBuffer = (ByteBuffer) peerMap.get(ByteBuffer.wrap("peer id".getBytes()));
+		if (peerIdByteByteBuffer == null)
+		    peerIdByteByteBuffer = (ByteBuffer) peerMap.get(ByteBuffer.wrap("peer_id".getBytes()));
+		    
                 byte[] peerIdByteString = peerIdByteByteBuffer.array();
 
                 if (Torrent.verbose) {
